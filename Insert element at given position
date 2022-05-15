@@ -1,0 +1,68 @@
+# LinkedList
+class Node {
+int i;
+Node next;
+}
+
+class Linked {
+public void printList(Node node) {
+if(node == null )
+{
+return;
+}
+System.out.println(node.i+ " ");
+printList(node.next);
+}
+private Node getNewNode(int i) {
+Node a = new Node();
+a.i = i;
+a.next = null;
+return a;
+}
+public Node insert(int i , Node node) {
+if(node == null) {
+return getNewNode(i);
+}
+else {
+node.next = insert(i,node.next);
+
+}
+return node;
+}
+public  Node insertAtPosition(int i , int position , Node node){
+if(position < 1){
+System.out.println("postion can't be less then 1 ");
+return node;
+}
+if(node == null && position > 1) {
+System.out.println("position is greater than element exists");
+return node;
+}
+if(node == null && position == 1){
+return getNewNode(i);
+}
+if(position == 1){
+Node newNode = getNewNode(i);
+newNode.next = node;
+return newNode;
+}
+node.next = insertAtPosition(i,position-1,node.next);
+return node;
+}
+
+public static void main(String[] args){
+Node root = null;
+Linked a = new Linked();
+root = a.insert(12 , root);
+root = a.insert(99 , root);
+root = a.insert(37 , root);
+root=a.insertAtPosition(5,2,root);
+a.printList(root);
+System.out.println();
+
+}
+}
+
+
+java -cp /tmp/HWsBA05aXW Linked
+12 5 99 37 
