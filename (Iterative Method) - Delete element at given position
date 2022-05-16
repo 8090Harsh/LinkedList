@@ -1,0 +1,98 @@
+# LinkedList
+class Node {
+    int data;
+    Node next;
+}
+
+class LinkedList {
+    private Node getNewNode(int val) {
+        Node newNode = new Node();
+        newNode.data = val;
+        newNode.next = null;
+        return newNode;
+    }
+    public Node insert(Node node , int val) {
+        if(node == null) {
+            return getNewNode(val);
+        }
+        Node firstNode = node;
+
+        while(node.next != null) {
+            node = node.next;
+        }
+// condition faild...
+
+        node.next = getNewNode(val);
+        return firstNode;
+    }
+    public void PrintList(Node node) {
+        if(node == null) {
+            return;
+        }
+        while(node != null){
+            while(node != null) {
+                System.out.println(node.data + "");
+             node = node.next; 
+            }
+        }
+    }
+        public Node deleteEle(Node node, int pos){
+            if(pos<1){
+                System.out.println("can't be less than 1");
+            
+                return node;
+            }
+            if(node == null && pos>1) {
+              System.out.println("it's exist");   
+            return node;
+                
+            }
+            
+            if(node == null && pos == 1){
+                return null;
+            }
+            if(pos == 1){
+                return node.next;
+            }
+            Node FirstNode = node;
+            Node prev = null;
+            while(node.next != null && pos>1){
+                prev = node;
+                node = node.next;
+                pos--;
+            }
+            
+            if(pos !=1){
+        System.out.println("Position greater then 1 so element exiets");
+        return FirstNode;         
+            }
+            
+            prev.next = node.next;
+            return FirstNode;
+        }
+        
+    
+    public static void main(String[] args) {
+        LinkedList obj = new LinkedList();
+        Node head = null;
+        head = obj.deleteEle(head,3);
+        head = obj.insert(head, 12);
+        head = obj.insert(head, 6);
+        head = obj.insert(head, 7);
+        head = obj.insert(head, 8);
+        head = obj.insert(head, 9);
+        head = obj.deleteEle(head,3);
+        obj.PrintList(head);
+        System.out.println();
+    }
+}
+
+
+
+java -cp /tmp/vFqrKa6qlK LinkedList
+it's exist
+12
+6
+8
+9
+
